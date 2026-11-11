@@ -3,7 +3,10 @@ from __future__ import annotations
 from sqlalchemy import Column, Float, ForeignKey, Integer, String, Text
 from sqlalchemy.orm import relationship
 
-from src.database import Base
+if __package__:
+    from .database import Base
+else:
+    from database import Base
 
 
 class Supplier(Base):

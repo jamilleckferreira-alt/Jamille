@@ -4,8 +4,12 @@ import pandas as pd
 import streamlit as st
 from sqlalchemy import select
 
-from src.database import SessionLocal, get_database_url, init_db
-from src.models import DonatedSupply, FoodItem, Supplier, Worker
+if __package__:
+    from .database import SessionLocal, get_database_url, init_db
+    from .models import DonatedSupply, FoodItem, Supplier, Worker
+else:
+    from database import SessionLocal, get_database_url, init_db
+    from models import DonatedSupply, FoodItem, Supplier, Worker
 
 init_db()
 
