@@ -273,7 +273,7 @@ def render_worker_page():
         "name": selected_worker.name if selected_worker else "",
         "group_type": selected_worker.group_type if selected_worker else "",
         "role": selected_worker.role if selected_worker else "",
-        "availability": selected_worker.availability if selected_worker else "Disponível",
+        "phone": selected_worker.phone if selected_worker else "",
         "notes": selected_worker.notes if selected_worker else "",
     }
 
@@ -285,7 +285,7 @@ def render_worker_page():
             index=["Aluno", "Pai de aluno", "Servidor"].index(defaults["group_type"]) if defaults["group_type"] in ["Aluno", "Pai de aluno", "Servidor"] else 0,
         )
         role = st.text_input("Função", value=defaults["role"])
-        availability = st.text_input("Disponibilidade", value=defaults["availability"])
+        phone = st.text_input("Telefone", value=defaults["phone"])
         notes = st.text_area("Observações", value=defaults["notes"], height=110)
 
         submitted = st.form_submit_button("Salvar pessoa")
@@ -295,7 +295,7 @@ def render_worker_page():
                     selected_worker.name = name
                     selected_worker.group_type = group_type
                     selected_worker.role = role
-                    selected_worker.availability = availability
+                    selected_worker.phone = phone
                     selected_worker.notes = notes
                     st.success("Pessoa atualizada com sucesso!")
                 else:
@@ -304,7 +304,7 @@ def render_worker_page():
                             name=name,
                             group_type=group_type,
                             role=role,
-                            availability=availability,
+                            phone=phone,
                             notes=notes,
                         )
                     )
@@ -323,7 +323,7 @@ def render_worker_page():
                     "Nome": worker.name,
                     "Categoria": worker.group_type,
                     "Função": worker.role,
-                    "Disponibilidade": worker.availability,
+                    "Telefone": worker.phone,
                     "Observações": worker.notes,
                 }
                 for worker in workers

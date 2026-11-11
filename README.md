@@ -60,8 +60,19 @@ MYSQL_PORT=3306
 MYSQL_USER=festival_user
 MYSQL_PASSWORD=sua_senha
 MYSQL_DATABASE=festival_ifc
+MYSQL_SSL_CA=isrgrootx1.pem
 STREAMLIT_ENV=production
 ```
+
+`MYSQL_SSL_CA` aponta para o certificado CA em formato PEM usado para validar o certificado TLS do servidor MySQL. O caminho relativo é resolvido a partir da raiz do projeto. O arquivo `isrgrootx1.pem` está na raiz deste projeto; inclua-o no repositório para que também esteja disponível no deploy. Se o provedor do banco fornecer outro CA, use o arquivo indicado por ele.
+
+No Streamlit Community Cloud, inclua o certificado CA no repositório e configure `MYSQL_SSL_CA` em **App settings > Secrets**, por exemplo:
+
+```toml
+MYSQL_SSL_CA = "isrgrootx1.pem"
+```
+
+Certificados CA públicos podem ser versionados. Nunca versione chaves privadas ou certificados de cliente que contenham material privado.
 
 ## Observação sobre deploy
 

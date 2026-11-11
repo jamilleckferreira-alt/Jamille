@@ -15,7 +15,7 @@ class Supplier(Base):
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String(120), nullable=False)
     contact = Column(String(120), nullable=False)
-    support_type = Column(String(80), nullable=False)
+    support_type = Column("type", String(80), nullable=False)
     notes = Column(Text, default="")
 
     food_items = relationship("FoodItem", back_populates="supplier")
@@ -41,9 +41,9 @@ class Worker(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String(120), nullable=False)
-    group_type = Column(String(60), nullable=False)
+    group_type = Column("category", String(80), nullable=False)
     role = Column(String(80), nullable=False)
-    availability = Column(String(80), default="Disponível")
+    phone = Column(String(30), nullable=True)
     notes = Column(Text, default="")
 
 
